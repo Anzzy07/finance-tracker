@@ -1,7 +1,6 @@
-// password : 08vWXvSHRYZkSiFL
 import express, { Express } from "express";
 import mongoose from "mongoose";
-import financialRecordRouter from "./routes/FinancialRecords";
+import financialRecordRouter from "./routes/financial-records";
 
 const app: Express = express();
 const port = process.env.PORT || 3001;
@@ -16,7 +15,7 @@ mongoose
   .then(() => console.log("Connected to MONGODB!"))
   .catch((err) => console.error("Failed To Connect MNAGODB:", err));
 
-app.use("/FinanceRecord", financialRecordRouter);
+app.use("/financial-records", financialRecordRouter);
 
 app.listen(port, () => {
   console.log(`Server Running on Port ${port}`);
