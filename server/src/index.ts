@@ -1,5 +1,6 @@
 import express from "express";
 import { Express } from "express";
+import cors from "cors";
 import mongoose from "mongoose";
 import financialRecordRouter from "./routes/financial-records";
 
@@ -7,6 +8,7 @@ const app: Express = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use(cors());
 
 const mangoURI: string =
   "mongodb+srv://anzel:08vWXvSHRYZkSiFL@personalfinance.5p3yc.mongodb.net/";
