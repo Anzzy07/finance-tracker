@@ -1,4 +1,5 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import { Request, Response } from "express";
 import FinancialRecordModel from "../schema/financial-record";
 
 const router = express.Router();
@@ -8,7 +9,7 @@ router.get("/getAllByUserID/:userId", async (req: Request, res: Response) => {
     const userId = req.params.userId;
     const records = await FinancialRecordModel.find({ userId: userId });
     if (records.length === 0) {
-      return res.status(404).send("No records found for the user.");
+      return res.status(404).send("No records found for the user.") as any;
     }
     res.status(200).send(records);
   } catch (err) {
@@ -38,7 +39,7 @@ router.put("/:id", async (req: Request, res: Response) => {
       { new: true }
     );
 
-    if (!record) return res.status(404).send();
+    if (!record) return res.status(404).send() as any;
 
     res.status(200).send(record);
   } catch (err) {
@@ -50,7 +51,7 @@ router.delete("/:id", async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
     const record = await FinancialRecordModel.findByIdAndDelete(id);
-    if (!record) return res.status(404).send();
+    if (!record) return res.status(404).send() as any;
     res.status(200).send(record);
   } catch (err) {
     res.status(500).send(err);
