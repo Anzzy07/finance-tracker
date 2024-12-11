@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
-import { useFinacialRecords } from "../../context/financial-record-context";
+import { useFinancialRecords } from "../../context/financial-record-context";
 
 export const FinancialRecordForm = () => {
   const [description, setDescription] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [paymentMethod, setPaymentMethod] = useState<string>("");
-  const { addRecord } = useFinacialRecords();
+  const { addRecord } = useFinancialRecords();
 
   const { user } = useUser();
 
@@ -24,7 +24,6 @@ export const FinancialRecordForm = () => {
     };
 
     addRecord(newRecord);
-
     setDescription("");
     setAmount("");
     setCategory("");
